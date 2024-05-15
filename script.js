@@ -1,8 +1,13 @@
 const path = require("path");
 const fs = require("fs");
 const xlsx = require('xlsx');
+const express = require('express');
+const app = express();
+const port = 2999;
+app.use('/svg', express.static('svg'));
 
 const array = [];
+const disciplines = {message: []};
 
 const filePath = path.resolve(__dirname, `./files/discipline_bak_mag.xlsx`);
 const workbook = xlsx.readFile(filePath);
@@ -114,7 +119,26 @@ for (let j = 0; j < sheetNames.length; j++) {
   }
 }
 
-for (let i = 0; i < array.length; i++)
-{
-  console.log("\"" + i + "\": \"" + array[i] + "\", ");
+for (let i = 0; i < array.length; i++) {
+  disciplines.message.push({ id: i, title: array[i], urlSvg: '/svg/'+i+".svg"});
 }
+
+app.get('/disciplines', (req, res) => {
+  res.send(disciplines);
+})
+
+app.get('/disciplines/:id', (req, res) => {
+  if (req.params.id >= 0 && req.params.id < disciplines.message.length) {
+    res.send({message: disciplines.message[req.params.id]});
+  }
+  else
+  {
+    res.send({message: null});
+  }
+})
+
+app.listen(port, () => {
+  console.log(`Сервер запущен на порту: ${port}`);
+  console.log(`/disciplines - вернёт список всех дисциплин, их id и url svg`);
+  console.log(`/disciplines/:id - вернёт определённую дисциплину по её id, её название и url svg`);
+})
