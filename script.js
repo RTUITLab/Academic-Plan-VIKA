@@ -3,7 +3,6 @@ const fs = require("fs");
 const xlsx = require('xlsx');
 const express = require('express');
 const app = express();
-const port = 2999;
 app.use('/svg', express.static('svg'));
 
 const array = [];
@@ -137,7 +136,7 @@ app.get('/disciplines/:id', (req, res) => {
   }
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Сервер запущен на порту: ${port}`);
   console.log(`/disciplines - вернёт список всех дисциплин, их id и url svg`);
   console.log(`/disciplines/:id - вернёт определённую дисциплину по её id, её название и url svg`);
