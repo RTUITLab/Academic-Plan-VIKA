@@ -1,8 +1,8 @@
-<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 27.25C15 23.75 18 22.5 19.5 22.5C22.4823 22.5 24 24.7615 24 27.25C24 33.049 19.9706 36 15 36C10.0294 36 6 31.299 6 25.5C6 19.701 10.0294 15 15 15H57C61.9706 15 66 19.701 66 25.5C66 31.299 61.9706 36 57 36C52.0294 36 48 33.049 48 27.25C48 24.7615 49.5177 22.5 52.5 22.5C54 22.5 57 23.75 57 27.25" stroke="#141B34" stroke-width="3" stroke-linecap="round"/>
-<path d="M9 60C9 58.3431 10.3431 57 12 57H60C61.6569 57 63 58.3431 63 60V63C63 64.6569 61.6569 66 60 66H12C10.3431 66 9 64.6569 9 63V60Z" stroke="#141B34" stroke-width="3"/>
-<path d="M39 27H33" stroke="#141B34" stroke-width="3" stroke-linecap="round"/>
-<path d="M28.5 57L28.5 45M43.5 57L43.5 45" stroke="#141B34" stroke-width="3" stroke-linecap="round"/>
-<path d="M57 15C57 10.7574 57 8.63604 55.682 7.31802C54.364 6 52.2426 6 48 6H24C19.7574 6 17.636 6 16.318 7.31802C15 8.63604 15 10.7574 15 15" stroke="#141B34" stroke-width="3" stroke-linecap="round"/>
-<path d="M15 36V57H57V36" stroke="#141B34" stroke-width="3" stroke-linecap="round"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 9.08333C5 7.91667 6 7.5 6.5 7.5C7.49411 7.5 8 8.25383 8 9.08333C8 11.0163 6.65685 12 5 12C3.34315 12 2 10.433 2 8.5C2 6.567 3.34315 5 5 5H19C20.6569 5 22 6.567 22 8.5C22 10.433 20.6569 12 19 12C17.3431 12 16 11.0163 16 9.08333C16 8.25383 16.5059 7.5 17.5 7.5C18 7.5 19 7.91667 19 9.08333" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M3 20C3 19.4477 3.44772 19 4 19H20C20.5523 19 21 19.4477 21 20V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V20Z" stroke="#141B34" stroke-width="1.5"/>
+<path d="M13 9H11" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M9.5 19L9.5 15M14.5 19L14.5 15" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M19 5C19 3.58579 19 2.87868 18.5607 2.43934C18.1213 2 17.4142 2 16 2H8C6.58579 2 5.87868 2 5.43934 2.43934C5 2.87868 5 3.58579 5 5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M5 12V19H19V12" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/>
 </svg>

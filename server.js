@@ -1,6 +1,7 @@
 const express = require('express');
 const AcademicPlans = require("./utils/academicPlans/index.js");
-const ParserPlans = require("./utils/ParserPlans/index.js");
+const ParserPlans = require("./utils/parserPlans/index.js");
+const Disciplines = require("./utils/disciplines/index.js");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -8,6 +9,7 @@ app.use('/svg', express.static('svg'));
 
 const ObjAcademicPlans = new AcademicPlans();
 const sheetNames = ObjAcademicPlans.getWorkbookSheetNames();
+const disciplines = new Disciplines(sheetNames, ObjAcademicPlans);
 
 const data = {
   "01.03.04": {
@@ -18,27 +20,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'ПМ_бак_анализ_данных_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName("ПМ_бак_анализ_данных_2023")).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName("ПМ_бак_анализ_данных_2023"), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'ПМ_бак_анализ_данных_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'ПМ_бак_анализ_данных_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'ПМ_бак_анализ_данных_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'ПМ_бак_анализ_данных_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_бак_анализ_данных_2019'), disciplines).getData(),
           }
         ]
       }
@@ -52,12 +54,12 @@ const data = {
           {
             year: 2023,
             sheetName: 'ИВТ_бак_цифровые_комплексы_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_цифровые_комплексы_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_цифровые_комплексы_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'ИВТ_бак_цифровые_комплексы_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_цифровые_комплексы_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_цифровые_комплексы_2022'), disciplines).getData(),
           }
         ]
       },
@@ -67,12 +69,12 @@ const data = {
           {
             year: 2023,
             sheetName: 'ИВТ_бак_инфраструктура_ит_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_инфраструктура_ит_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_инфраструктура_ит_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'ИВТ_бак_инфраструктура_ит_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_инфраструктура_ит_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_бак_инфраструктура_ит_2022'), disciplines).getData(),
           }
         ]
       }
@@ -86,27 +88,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прик_инф_бак_УД_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прик_инф_бак_УД_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прик_инф_бак_УД_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прик_инф_бак_УД_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прик_инф_бак_УД_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_УД_2019'), disciplines).getData(),
           }
         ]
       },
@@ -116,22 +118,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прик_инф_бак_ЦТ_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прик_инф_бак_ЦТ_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прик_инф_бак_ЦТ_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2022'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прик_инф_бак_ЦТ_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ЦТ_2020'), disciplines).getData(),
           },
         ]
       },
@@ -141,27 +143,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прик_инф_бак_ИО_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прик_инф_бак_ИО_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прик_инф_бак_ИО_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прик_инф_бак_ИО_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прик_инф_бак_ИО_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_бак_ИО_2019'), disciplines).getData(),
           }
         ]
       }
@@ -175,27 +177,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_рпппис_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_рпппис_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_бак_рпппис_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_бак_рпппис_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прог_инж_бак_рпппис_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_рпппис_2019'), disciplines).getData(),
           }
         ]
       },
@@ -205,12 +207,12 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_росатом_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_росатом_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_росатом_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_росатом_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_росатом_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_росатом_2022'), disciplines).getData(),
           }
         ]
       },
@@ -220,22 +222,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_геймдев_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_геймдев_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_бак_геймдев_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_бак_геймдев_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_геймдев_2020'), disciplines).getData(),
           }
         ]
       },
@@ -245,12 +247,12 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_VR_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_VR_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_VR_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_VR_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_VR_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_VR_2022'), disciplines).getData(),
           }
         ]
       },
@@ -260,27 +262,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_нейронки_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_нейронки_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_бак_нейронки_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_бак_нейронки_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прог_инж_бак_нейронки_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_нейронки_2019'), disciplines).getData(),
           }
         ]
       },
@@ -290,27 +292,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_спи_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_спи_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_бак_спи_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_бак_спи_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прог_инж_бак_спи_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_спи_2019'), disciplines).getData(),
           }
         ]
       },
@@ -320,27 +322,27 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_бак_ERP_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2023'), disciplines).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_бак_ERP_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2022'), disciplines).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_бак_ERP_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2021'), disciplines).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_бак_ERP_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2020'), disciplines).getData(),
           },
           {
             year: 2019,
             sheetName: 'Прог_инж_бак_ERP_2019',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2019')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_бак_ERP_2019'), disciplines).getData(),
           }
         ]
       }
@@ -354,22 +356,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'ПМ_мага_ИАД_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'ПМ_мага_ИАД_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'ПМ_мага_ИАД_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'ПМ_мага_ИАД_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ПМ_мага_ИАД_2020'), disciplines, false).getData(),
           }
         ]
       }
@@ -383,22 +385,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'ИВТ_мага_ВТ_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'ИВТ_мага_ВТ_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'ИВТ_мага_ВТ_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'ИВТ_мага_ВТ_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('ИВТ_мага_ВТ_2020'), disciplines, false).getData(),
           }
         ]
       }
@@ -412,22 +414,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прик_инф_мага_КИС_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прик_инф_мага_КИС_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прик_инф_мага_КИС_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прик_инф_мага_КИС_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прик_инф_мага_КИС_2020'), disciplines, false).getData(),
           }
         ]
       }
@@ -441,22 +443,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_мага_аис_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_мага_аис_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_мага_аис_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_мага_аис_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_аис_2020'), disciplines, false).getData(),
           }
         ]
       },
@@ -466,22 +468,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_мага_СИ_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_мага_СИ_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_мага_СИ_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_мага_СИ_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_СИ_2020'), disciplines, false).getData(),
           }
         ]
       },
@@ -491,22 +493,22 @@ const data = {
           {
             year: 2023,
             sheetName: 'Прог_инж_мага_ERP_2023',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2023')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2023'), disciplines, false).getData(),
           },
           {
             year: 2022,
             sheetName: 'Прог_инж_мага_ERP_2022',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2022')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2022'), disciplines, false).getData(),
           },
           {
             year: 2021,
             sheetName: 'Прог_инж_мага_ERP_2021',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2021')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2021'), disciplines, false).getData(),
           },
           {
             year: 2020,
             sheetName: 'Прог_инж_мага_ERP_2020',
-            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2020')).getData(),
+            data: new ParserPlans(ObjAcademicPlans.getWorkbookJsonSheetName('Прог_инж_мага_ERP_2020'), disciplines, false).getData(),
           }
         ]
       }
@@ -514,35 +516,13 @@ const data = {
   },
 }
 
-const uniqueDisciplines = new Set();
-
-sheetNames.forEach(sheetName => {
-  const data = ObjAcademicPlans.getWorkbookJsonSheetName(sheetName);
-
-  for (let i = 5; i < data.length; i++) {
-    const column1 = data[i].Column1;
-    if (column1.includes('ФТД')) break;
-
-    const shouldInclude = !['Часть', 'по выбору', 'Блок', 'Обязательная часть'].some(term => column1.includes(term));
-    if (shouldInclude && !uniqueDisciplines.has(column1)) {
-      uniqueDisciplines.add(column1);
-    }
-  }
-});
-
-const disciplines = Array.from(uniqueDisciplines).map((title, id) => ({
-  id,
-  title,
-  urlSvg: `/svg/${id}.svg`
-}));
-
 app.get('/disciplines', (req, res) => {
-  res.send({message: {length: disciplines.length, array: disciplines}});
+  res.send({message: {length: disciplines.getArray().length, array: disciplines.getArray()}});
 });
 
 app.get('/disciplines/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const discipline = disciplines[id] || null;
+  const discipline = disciplines.getId(id);
   res.send({ message: discipline });
 });
 
